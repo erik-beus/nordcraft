@@ -1,8 +1,7 @@
-import type { ProjectFilesWithCustomCode } from '@nordcraft/ssr/dist/utils/routes'
 import { getConnInfo } from 'hono/cloudflare-workers'
 import { endTime, startTime } from 'hono/timing'
+import * as project from '../__project__/project.json' // eslint-disable-line @typescript-eslint/no-unused-vars
 import { getApp } from './app'
-import { loadJsFile } from './middleware/jsLoader'
 import { loadProjectInfo } from './middleware/projectInfo'
 import { routesLoader } from './middleware/routesLoader'
 
@@ -13,9 +12,7 @@ export const app = getApp({
     loader: async ({ name, ctx }) => {
       const timingKey = `pageLoader:${name}`
       startTime(ctx, timingKey)
-      const file = await loadJsFile<ProjectFilesWithCustomCode>(
-        `./components/${name}.js`,
-      )
+      const file = project.files as any
       endTime(ctx, timingKey)
       return file
     },
