@@ -26,6 +26,7 @@
     "packages/backend": {
       "name": "nordcraft-backend",
       "dependencies": {
+        "@bunny.net/edgescript-sdk": "0.12.0",
         "@hono/node-server": "1.19.6",
         "@nordcraft/core": "workspace:*",
         "@nordcraft/ssr": "workspace:*",
@@ -35,6 +36,7 @@
         "@cloudflare/workers-types": "4.20260114.0",
         "@nordcraft/runtime": "workspace:*",
         "@types/node": "24.3.1",
+        "@vercel/ncc": "^0.38.1",
         "wrangler": "4.59.1",
       },
     },
@@ -97,6 +99,8 @@
     },
   },
   "packages": {
+    "@bunny.net/edgescript-sdk": ["@bunny.net/edgescript-sdk@0.12.0", "", { "dependencies": { "@hono/node-server": "^1.12.0", "hono": "^4.5.5" } }, "sha512-SLXBnPjxj1zNchNaGT2n8j5JWHzzfEYvpv4k3o1Cg1u4tAsnqzdmV7jTajLgFPdaJBdgrzuWzYXgDNqR51Ad2Q=="],
+
     "@cloudflare/kv-asset-handler": ["@cloudflare/kv-asset-handler@0.4.1", "", { "dependencies": { "mime": "^3.0.0" } }, "sha512-Nu8ahitGFFJztxUml9oD/DLb7Z28C8cd8F46IVQ7y5Btz575pvMY8AqZsXkX7Gds29eCKdMgIHjIvzskHgPSFg=="],
 
     "@cloudflare/unenv-preset": ["@cloudflare/unenv-preset@2.9.0", "", { "peerDependencies": { "unenv": "2.0.0-rc.24", "workerd": "^1.20251202.0" }, "optionalPeers": ["workerd"] }, "sha512-99nEvuOTCGGGRNaIat8UVVXJ27aZK+U09SYDp0kVjQLwC9wyxcrQ28IqLwrQq2DjWLmBI1+UalGJzdPqYgPlRw=="],
@@ -352,6 +356,8 @@
     "@typescript/native-preview-win32-arm64": ["@typescript/native-preview-win32-arm64@7.0.0-dev.20251208.1", "", { "os": "win32", "cpu": "arm64" }, "sha512-54kEiHT7CRx61DrlXynTs4VRCL8U+u+hM/J1vXhFdUrFaYldHv+pK4LnxUwR59GwDpxkAjBhI8FSSKF11YNqbg=="],
 
     "@typescript/native-preview-win32-x64": ["@typescript/native-preview-win32-x64@7.0.0-dev.20251208.1", "", { "os": "win32", "cpu": "x64" }, "sha512-l/pgh2zFZB4idhOZ/t+X1AVbYAUjKE78NMrj0llMYrt1O6cK9jwFocscjJVQcSGqEKdkmkyQhSQuq9kqqypfbw=="],
+
+    "@vercel/ncc": ["@vercel/ncc@0.38.4", "", { "bin": { "ncc": "dist/ncc/cli.js" } }, "sha512-8LwjnlP39s08C08J5NstzriPvW1SP8Zfpp1BvC2sI35kPeZnHfxVkCwu4/+Wodgnd60UtT1n8K8zw+Mp7J9JmQ=="],
 
     "@webref/elements": ["@webref/elements@2.6.0", "", {}, "sha512-SVVXgJjktuVpqoxckYOkDbuQ5YQ6w6XLSL0+67lslVX/Q1gYcdQ4Zeeg1y0FQZFb74cq4RF9cfi7nl0n1dmiCw=="],
 
