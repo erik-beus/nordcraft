@@ -140,7 +140,7 @@ export const nordcraftPage = async ({
       // This refers to the endpoint we created in fontRouter for our proxied stylesheet
       cssBasePath: '/.toddle/fonts/stylesheet/css2',
       // Just to be explicit about where to grab the reset stylesheet from
-      resetStylesheetPath: '/_static/reset.css',
+      resetStylesheetPath: 'https://nordcraft.com/_static/reset.css',
       // This refers to the generated stylesheet for each page
       pageStylesheetPath: options.pageStylesheetUrl(page.name),
       page: toddleComponent,
@@ -182,7 +182,7 @@ export const nordcraftPage = async ({
               )}
             </script>
             <script type="module">
-              import { initGlobalObject, createRoot } from '/_static/page.main.esm.js';
+              import { initGlobalObject, createRoot } from 'https://nordcraft.com/_static/page.main.js';
               import { loadCustomCode, formulas, actions } from '${options.customCodeUrl(toddleComponent.name)}'
               window.__toddle = JSON.parse(document.getElementById('nordcraft-data').textContent);
               window.__toddle.components = [window.__toddle.component, ...window.__toddle.components];
@@ -200,7 +200,7 @@ export const nordcraftPage = async ({
           )}
         </script>
         <script type="module">
-          import { initGlobalObject, createRoot } from '/_static/page.main.esm.js';
+          import { initGlobalObject, createRoot } from 'https://nordcraft.com/_static/page.main.js';
 
           window.__toddle = JSON.parse(document.getElementById('nordcraft-data').textContent);
           window.__toddle.components = [window.__toddle.component, ...window.__toddle.components];
