@@ -6,7 +6,7 @@ import { loadJsFile } from './middleware/jsLoader'
 import { loadProjectInfo } from './middleware/projectInfo'
 import { routesLoader } from './middleware/routesLoader'
 
-const app = getApp({
+export const app = getApp({
   getConnInfo,
   fileLoaders: [routesLoader, loadProjectInfo],
   pageLoader: {
@@ -25,5 +25,3 @@ const app = getApp({
     },
   },
 })
-
-export default app
