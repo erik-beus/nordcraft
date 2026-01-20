@@ -1,6 +1,5 @@
 import * as BunnySDK from '@bunny.net/edgescript-sdk'
-import { app } from './hono'
-
+import { app } from './preview.index'
 
 // eslint-disable-next-line no-console
 console.log('Starting server...')
