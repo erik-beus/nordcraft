@@ -1,9 +1,6 @@
 name: 'Deploy'
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 permissions:
   id-token: write # Required for OIDC - see https://docs.npmjs.com/trusted-publishers
@@ -17,45 +14,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          # fetch-depth: 2 is necessary to allow checking the previous commit
-          fetch-depth: 2
       - name: Install bun
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: 1.3.3
-      - name: Store package.json
-        run: echo "PACKAGE_JSON=$(jq -c . < package.json)" >> $GITHUB_ENV
-      - name: Current version
-        run: echo '${{ fromJson(env.PACKAGE_JSON).version }}'
-      - name: Store old package.json
+      - name: Build application
         run: |
-          git show HEAD^:package.json > package.old.json
-          echo "PACKAGE_JSON_OLD=$(jq -c . < package.old.json)" >> $GITHUB_ENV
-      - name: Previous version
-        run: |
-          echo '${{ fromJson(env.PACKAGE_JSON_OLD).version }}'
-      - name: Version changed
-        id: version_changed
-        if: ${{ fromJson(env.PACKAGE_JSON).version != fromJson(env.PACKAGE_JSON_OLD).version }}
-        run: echo "version=${{ fromJson(env.PACKAGE_JSON).version }}" >> $GITHUB_OUTPUT
-      - name: Version didn't change
-        if: ${{ fromJson(env.PACKAGE_JSON).version == fromJson(env.PACKAGE_JSON_OLD).version }}
-        run: |
-          echo "Version was not changed! No release needed."
-  create_release:
-    needs: version_check
-    # Only run this job if the version has changed
-    if: ${{needs.version_check.outputs.version}}
-    uses: nordcraftengine/nordcraft/.github/workflows/create_release.yml@main
-    with:
-      version: ${{needs.version_check.outputs.version}}
-    secrets: inherit
-  start_publish:
-    needs: [version_check, create_release]
-    # Only run this job if the version has changed
-    if: ${{needs.version_check.outputs.version}}
-    uses: nordcraftengine/nordcraft/.github/workflows/deploy_to_npm.yml@main
-    with:
-      version: ${{needs.version_check.outputs.version}}
-    secrets: inherit
+          cd packages/backend/
+          bun run predeploy
+      - name: Publish the script to Bunny
+        uses: 'BunnyWay/actions/deploy-script@main'
+        with:
+          script_id: 61076
+          file: 'packages/backend/dist/index.ts'
