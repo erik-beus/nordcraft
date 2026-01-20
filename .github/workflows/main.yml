@@ -30,4 +30,4 @@ jobs:
         uses: 'BunnyWay/actions/deploy-script@main'
         with:
           script_id: 61076
-          file: 'packages/backend/dist/index.ts'
+          file: 'packages/backend/dist/index.js'
