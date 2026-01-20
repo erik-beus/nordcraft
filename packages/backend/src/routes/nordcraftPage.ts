@@ -33,7 +33,7 @@ import { endTime, startTime } from 'hono/timing'
 import type { ContentfulStatusCode } from 'hono/utils/http-status'
 import type { HonoEnv } from '../../hono'
 import type { PageLoaderUrls } from '../loaders/types'
-import { evaluateComponentApis, RedirectError } from '../utils/api'
+import { RedirectError } from '../utils/api'
 
 export const nordcraftPage = async ({
   hono,
@@ -117,7 +117,7 @@ export const nordcraftPage = async ({
       req: hono.req.raw,
       files: files,
       includedComponents,
-      evaluateComponentApis,
+      evaluateComponentApis: async () => ({}),
       projectId: 'my_project',
     })
     endTime(hono, 'renderPageBody')
